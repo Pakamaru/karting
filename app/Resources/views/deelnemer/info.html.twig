@@ -1,0 +1,14 @@
+{% extends 'deelnemer.html.twig' %}
+{% block menu %}
+    <li><a href="{{ path('activiteiten') }}">home</a></li>
+    <li><a href="{{ path('weizig') }}">weizig</a></li>
+{% endblock %}
+    {% block content %}
+        <h3>Weizig</h3>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+
+    {% endblock %}

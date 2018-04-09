@@ -1,0 +1,15 @@
+ div a {
+    float:left;
+    width:40%;
+    padding:1% 5%;
+}
+
+a>img {
+  width:20px;  
+}
+
+.full {
+ color: red;
+ background-color: rgba(100,100,100,0.3);
+ box-shadow: inset 0px 2px 8px #000;
+}

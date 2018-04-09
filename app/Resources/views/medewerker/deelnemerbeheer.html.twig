@@ -1,0 +1,80 @@
+{% extends 'medewerker.html.twig' %}
+
+{% block menu %}
+    <li class=""><a href="{{ path('activiteitenoverzicht') }}">home</a></li>
+    <li class=""><a href="{{ path('beheer') }}"><span class="badge">{{ activiteiten|length }}</span>beheer</a></li>
+    <li class=""><a href="{{ path('soortbeheer') }}"><span class="badge">{{ soorten|length }}</span>soort beheer</a></li>
+    <li class="active"><a href="{{ path('deelnemerbeheer') }}"><span class="badge">{{ deelnemers|length }}</span>deelnemer beheer</a></li>
+{% endblock %}
+
+{% block content %}
+    <section >
+        <table class="table" style="table-layout: fixed">
+            <caption>Dit zijn alle activiteiten van het kartcentrum</caption>
+            <thead>
+            <tr>
+                <td>username</td>
+                <td>email</td>
+                <td>roles</td>
+                <td>voorletters</td>
+                <td>tussenvoegsel</td>
+                <td>achternaam</td>
+                <td>adres</td>
+                <td>postcode</td>
+                <td>woonplaats</td>
+                <td>telefoon</td>
+                <td>reset wachtwoord</td>
+                <td>verwijder</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for deelnemer in deelnemers %}
+                <tr>
+                    <td>
+                        {{ deelnemer.username }}
+                    </td>
+                    <td>
+                        {{ deelnemer.email }}
+                    </td>
+                    <td>
+                        {{ deelnemer.roles|join(', ')|lower }}
+                    </td>
+                    <td>
+                        {{ deelnemer.voorletters }}
+                    </td>
+                    <td>
+                        {{ deelnemer.tussenvoegsel }}
+                    </td>
+                    <td>
+                        {{ deelnemer.achternaam }}
+                    </td>
+                    <td>
+                        {{ deelnemer.adres }}
+                    </td>
+                    <td>
+                        {{ deelnemer.postcode }}
+                    </td>
+                    <td>
+                        {{ deelnemer.woonplaats }}
+                    </td>
+                    <td>
+                        {{ deelnemer.telefoon }}
+                    </td>
+                    <td title="reset het wachtwoord van deze gebruiker">
+
+
+                        <a href="{{ path('resetdeelnemer', {'id':deelnemer.id}) }}" >
+                            <span class="glyphicon glyphicon-pencil" style="color:red"></span>
+                        </a>
+                    </td>
+                    <td title="verwijder deze gebruiker definitief">
+                        <a href="{{ path('deletedeelnemer', {'id':deelnemer.id}) }}" >
+                            <span class="glyphicon glyphicon-minus" style="color:red"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
